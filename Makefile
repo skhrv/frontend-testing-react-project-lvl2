@@ -7,7 +7,7 @@ install-deps:
 	npm ci
 
 test:
-	npm test -- --silent
+	npm test
 
 test-coverage:
 	npm test -- --coverage --coverageProvider=v8
