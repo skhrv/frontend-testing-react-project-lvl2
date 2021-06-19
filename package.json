@@ -1,0 +1,30 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/skhrv/frontend-testing-react-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/skhrv/frontend-testing-react-project-lvl2/actions)",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest --bail"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skhrv/frontend-testing-react-project-lvl2.git"
+  },
+  "author": "Ruslan Sukharev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skhrv/frontend-testing-react-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/skhrv/frontend-testing-react-project-lvl2#readme",
+  "dependencies": {
+    "@hexlet/react-todo-app-with-backend": "^0.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.2",
+    "jest": "^27.0.4",
+    "jest-cli": "^27.0.4"
+  }
+}
