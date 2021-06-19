@@ -4,3 +4,7 @@
 ### step 1
 
 [![asciicast](https://asciinema.org/a/sVJcKVgHVSZ8ueMdHoBn7mTI0.svg)](https://asciinema.org/a/sVJcKVgHVSZ8ueMdHoBn7mTI0)
+
+
+### step 2
+[![asciicast](https://asciinema.org/a/NvkNrIgpoSpiph6e6WT2arC4y.svg)](https://asciinema.org/a/NvkNrIgpoSpiph6e6WT2arC4y)
