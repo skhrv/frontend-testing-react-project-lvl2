@@ -16,3 +16,6 @@ extends:
 parserOptions:
   ecmaVersion: 11
   sourceType: module
+
+rules:
+  import/prefer-default-export: 0
