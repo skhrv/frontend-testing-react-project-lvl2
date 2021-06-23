@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 
-const prefix = 'api/v1';
+const prefix = '/api/v1';
 
 const routes = {
   lists: () => [prefix, 'lists'].join('/'),
@@ -14,7 +14,6 @@ export const handlers = [
   rest.post(routes.listTasks(), (req, res, ctx) => {
     const { text } = req.body;
     const { listId } = req.params;
-
     return res(
       ctx.json({
         text,

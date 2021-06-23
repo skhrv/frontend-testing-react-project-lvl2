@@ -4,8 +4,8 @@ import {
 } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
-import { setupServer } from 'msw/node';
-import { handlers, errorCreateTaskHandler } from './handlers';
+import { server } from '../mocks/server';
+import { errorCreateTaskHandler } from '../mocks/handlers';
 
 const PRELOAD_STATE = {
   lists: [{
@@ -20,7 +20,6 @@ const PRELOAD_STATE = {
   tasks: [],
   currentListId: 1,
 };
-const server = setupServer(...handlers);
 
 beforeAll(() => server.listen({ onUnhandledRequest: 'warn' }));
 
