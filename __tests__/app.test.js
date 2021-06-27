@@ -63,6 +63,7 @@ describe('todo app positive cases', () => {
 
     userEvent.click(getByText(tasks, /remove/i));
     await waitFor(() => expect(task).not.toBeInTheDocument());
+
     userEvent.click(screen.getByText(/secondary/i));
     const secondaryListTask1 = screen.getByText(/read book/i);
     const secondaryListTask2 = screen.getByText(/work/i);
@@ -84,7 +85,7 @@ describe('todo app positive cases', () => {
 
     const lists = screen.getByTestId('lists');
 
-    const createdListContainer = await (await findByText(lists, /unsorted/i)).closest('li');
+    const createdListContainer = (await findByText(lists, /unsorted/i)).closest('li');
 
     expect(screen.getByText(/tasks list is empty/i)).toBeInTheDocument();
     const taskForm = screen.getByTestId('task-form');
@@ -120,9 +121,9 @@ describe('todo app negative cases', () => {
 
     render(vdom);
     const listForm = screen.getByTestId('list-form');
-    const ListName = 'secondary';
-    expect(screen.getByText(ListName)).toBeInTheDocument();
-    userEvent.type(getByLabelText(listForm, /new list/i), ListName);
+    const listName = 'secondary';
+    expect(screen.getByText(listName)).toBeInTheDocument();
+    userEvent.type(getByLabelText(listForm, /new list/i), listName);
     userEvent.click(getByText(listForm, /add/i));
     await waitFor(() => {
       expect(screen.getByText(/already exists/i)).toBeInTheDocument();
@@ -148,13 +149,39 @@ describe('todo app negative cases', () => {
     });
   });
 
+  it('delete list with tasks and create new with same name', async () => {
+    const vdom = app(PRELOAD_STATE);
+
+    render(vdom);
+    const listWithTasksName = 'secondary';
+
+    const list = screen.getByText(listWithTasksName);
+    expect(list).toBeInTheDocument();
+    userEvent.click(list);
+
+    expect(screen.queryByText(/tasks list is empty/i)).not.toBeInTheDocument();
+
+    const listContainer = list.closest('li');
+    userEvent.click(getByText(listContainer, /remove/i));
+
+    await waitFor(() => {
+      expect(screen.queryByText(/secondary/i)).not.toBeInTheDocument();
+    });
+
+    const listForm = screen.getByTestId('list-form');
+    userEvent.type(getByLabelText(listForm, /new list/i), listWithTasksName);
+    userEvent.click(getByText(listForm, /add/i));
+    await waitFor(() => {
+      expect(screen.queryByText(/secondary/i)).toBeInTheDocument();
+      expect(screen.queryByText(/tasks list is empty/i)).toBeInTheDocument();
+    });
+  });
+
   it('non removable list', () => {
     const vdom = app(PRELOAD_STATE);
 
     render(vdom);
-
     const listContainer = screen.getByText(/primary/i).closest('li');
-
     expect(queryByText(listContainer, /remove/i)).not.toBeInTheDocument();
   });
 });
