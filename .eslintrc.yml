@@ -19,3 +19,4 @@ parserOptions:
 
 rules:
   import/prefer-default-export: 0
+  import/no-extraneous-dependencies: [2, {devDependencies: ["**/*.test.js", "mocks/*.js"]}]
