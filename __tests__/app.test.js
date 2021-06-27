@@ -5,7 +5,7 @@ import {
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 // eslint-disable-next-line jest/no-mocks-import
-import { server } from '../__mocks__/server';
+import server from '../__mocks__/server';
 // eslint-disable-next-line jest/no-mocks-import
 import { errorCreateTaskHandler } from '../__mocks__/handlers';
 
