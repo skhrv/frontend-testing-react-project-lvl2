@@ -4,8 +4,10 @@ import {
 } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
-import { server } from '../mocks/server';
-import { errorCreateTaskHandler } from '../mocks/handlers';
+// eslint-disable-next-line jest/no-mocks-import
+import { server } from '../__mocks__/server';
+// eslint-disable-next-line jest/no-mocks-import
+import { errorCreateTaskHandler } from '../__mocks__/handlers';
 
 const PRELOAD_STATE = {
   lists: [{
