@@ -24,8 +24,7 @@
   "homepage": "https://github.com/skhrv/frontend-testing-react-project-lvl2#readme",
   "dependencies": {
     "@hexlet/react-todo-app-with-backend": "^0.10.0",
-    "react": "^17.0.2",
-    "msw": "^0.29.0"
+    "react": "^17.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -41,6 +40,7 @@
     "eslint-plugin-jest": "^24.3.2",
     "eslint-plugin-react": "^7.24.0",
     "jest": "^27.0.5",
-    "jest-cli": "^27.0.5"
+    "jest-cli": "^27.0.5",
+    "msw": "^0.29.0"
   }
 }
