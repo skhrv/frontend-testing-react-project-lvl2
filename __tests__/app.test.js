@@ -83,8 +83,8 @@ describe('todo app positive cases', () => {
     userEvent.click(getByText(createdListContainer, /remove/i));
     await waitFor(() => {
       expect(createdListContainer).not.toBeInTheDocument();
-      expect(screen.queryByText(/tasks list is empty/i)).toBeInTheDocument();
     });
+    expect(screen.queryByText(/tasks list is empty/i)).toBeInTheDocument();
   });
 });
 
@@ -104,10 +104,13 @@ describe('todo app negative cases', () => {
     const listName = 'secondary';
     expect(screen.getByText(listName)).toBeInTheDocument();
     userEvent.type(getByLabelText(listForm, /new list/i), listName);
-    userEvent.click(getByText(listForm, /add/i));
+    const addListBtn = getByText(listForm, /add/i).closest('button');
+
+    userEvent.click(addListBtn);
     await waitFor(() => {
-      expect(screen.getByText(/already exists/i)).toBeInTheDocument();
+      expect(addListBtn).not.toBeDisabled();
     });
+    expect(screen.getByText(/already exists/i)).toBeInTheDocument();
   });
 
   it('duplicate task names', async () => {
@@ -120,10 +123,13 @@ describe('todo app negative cases', () => {
     const taskForm = screen.getByTestId('task-form');
 
     userEvent.type(getByLabelText(taskForm, /new task/i), taskName);
-    userEvent.click(getByText(taskForm, /add/i));
+    const addTaskBtn = getByText(taskForm, /add/i);
+
+    userEvent.click(addTaskBtn);
     await waitFor(() => {
-      expect(screen.getByText(/already exists/i)).toBeInTheDocument();
+      expect(addTaskBtn).not.toBeDisabled();
     });
+    expect(screen.getByText(/already exists/i)).toBeInTheDocument();
   });
 
   it('delete list with tasks and create new with same name', async () => {
@@ -144,11 +150,14 @@ describe('todo app negative cases', () => {
 
     const listForm = screen.getByTestId('list-form');
     userEvent.type(getByLabelText(listForm, /new list/i), listWithTasksName);
-    userEvent.click(getByText(listForm, /add/i));
+
+    const addListBtn = getByText(listForm, /add/i).closest('button');
+    userEvent.click(addListBtn);
     await waitFor(() => {
-      expect(screen.queryByText(/secondary/i)).toBeInTheDocument();
-      expect(screen.queryByText(/tasks list is empty/i)).toBeInTheDocument();
+      expect(addListBtn).not.toBeDisabled();
     });
+    expect(screen.queryByText(/secondary/i)).toBeInTheDocument();
+    expect(screen.queryByText(/tasks list is empty/i)).toBeInTheDocument();
   });
 
   it('non removable list', () => {
