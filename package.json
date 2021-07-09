@@ -24,6 +24,7 @@
   "homepage": "https://github.com/skhrv/frontend-testing-react-project-lvl2#readme",
   "dependencies": {
     "@hexlet/react-todo-app-with-backend": "^0.10.0",
+    "lodash": "^4.17.21",
     "react": "^17.0.2"
   },
   "devDependencies": {
